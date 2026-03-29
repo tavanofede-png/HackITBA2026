@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vaultix — Smart Recovery Vault (DEMO MODE)</title>
+    <meta name="description"
+        content="Protege tus activos digitales con guardianes y recuperacion inteligente. Vault no custodial on-chain." />
+    <link rel="shortcut icon" href="logo-verde.png" />
+    <link rel="icon" href="logo-verde.png" />
+    <link rel="apple-touch-icon" href="logo-verde.png" />
+    <link rel="preload" as="image" href="logo-verde.png" />
+    <link rel="preload" as="image" href="nombre-verde.png" />
+    <link rel="stylesheet" href="styles.css" />
+    
+    <style>
+        /* DEMO WIDGET STYLES */
+        .demo-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: #1a1a18;
+            color: #fff;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border: 2px solid var(--emerald);
+        }
+        .demo-widget h4 {
+            margin: 0;
+            color: var(--emerald);
+            text-align: center;
+            font-size: 14px;
+        }
+        .demo-btn {
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .demo-btn:hover { background: var(--emerald); }
+        .demo-btn.active { background: var(--emerald-dark); font-weight: bold; border: 1px solid var(--emerald); }
+    </style>
+</head>
+
+<body>
+    <noscript>
+        <div style="padding:24px;font-family:system-ui,sans-serif">Necesitas tener JavaScript activado para usar esta aplicacion.</div>
+    </noscript>
+
+    <!-- DEMO CONTROLS (Only visible in this demo.html) -->
+    <div class="demo-widget">
+        <h4>Demo Controls</h4>
+        <button class="demo-btn active" id="demo-role-owner">Login as Owner</button>
+        <button class="demo-btn" id="demo-role-guardian">Login as Guardian</button>
+        <button class="demo-btn" id="demo-role-heir">Login as Heir</button>
+    </div>
+
+    <!-- =============================================
+         LANDING PAGE (shown when NOT connected)
+         ============================================= -->
+    <div id="landing-page" class="page-wrapper">
+        <div class="bg-decorations">
+            <div class="dot-pattern"></div>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+
+        <nav class="navbar">
+            <a href="#" class="nav-logo">
+                <img src="logo-verde.png" alt="Vaultix" class="logo-icon" />
+                <img src="nombre-verde.png" alt="Vaultix" class="logo-text" />
+            </a>
+            <button class="btn-connect" id="btn-connect-wallet">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path>
+                    <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
+                </svg>
+                Connect Wallet
+            </button>
+        </nav>
+
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title animate-slide-down">
+                    Never lose access to your
+                    <span class="gradient-text">digital assets</span>
+                </h1>
+                <p class="hero-subtitle animate-slide-down delay-2">
+                    Non-custodial smart vault with guardian approval for withdrawals and automatic recovery after inactivity. (FRONTEND DEMO)
+                </p>
+                <div class="hero-cta animate-slide-down delay-3">
+                    <a href="#how-it-works" class="btn-how-it-works">
+                        How it works
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="m9 18 6-6-6-6"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY SECTION -->
+        <section class="security-section">
+            <div class="security-inner">
+                <div class="security-grid">
+                    <div class="security-text">
+                        <div class="security-badge">
+                            Next-Gen Security
+                        </div>
+                        <h2 class="security-title">
+                            The safety net your <br />
+                            <span class="gradient-text">crypto wallet</span> deserves
+                        </h2>
+                        <p class="security-desc">
+                            Most wallets are lost because of a single point of failure: the seed phrase. Vaultix adds a programmable layer of security that guarantees you can always recover your funds.
+                        </p>
+                        <div class="security-features">
+                            <div class="security-feature-item">
+                                <div class="check-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                                </div>
+                                <div>
+                                    <p class="sf-title">Programmable Recovery</p>
+                                    <p class="sf-desc">Set a timer that activates recovery only after your inactivity.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works-section">
+            <div class="hiw-inner">
+                <div class="hiw-header">
+                    <h2 class="hiw-title">How it works</h2>
+                    <p class="hiw-subtitle">Three roles, one mission: protect your digital assets</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- =============================================
+         APP DASHBOARD (shown AFTER wallet connection)
+         ============================================= -->
+    <div id="app-dashboard" class="app-dashboard hidden">
+        <div class="bg-decorations">
+            <div class="dot-pattern"></div>
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+
+        <main class="app-container">
+
+            <!-- MAIN MENU -->
+            <section id="view-main-menu" class="view active">
+                <header class="app-header">
+                    <h2>Welcome, <span id="display-wallet" class="accent-text">0x...</span></h2>
+                    <button class="btn sm-btn outline-btn" onclick="location.reload()">Disconnect</button>
+                </header>
+
+                <div class="menu-grid">
+                    <div class="menu-card glass interactive" id="btn-nav-create">
+                        <div class="icon create-icon"></div>
+                        <h3>Create Vault</h3>
+                        <p>Setup a new secure vault with guardians and heirs.</p>
+                    </div>
+                    <div class="menu-card glass interactive" id="btn-nav-heir">
+                        <div class="icon heir-icon"></div>
+                        <h3>I am Heir</h3>
+                        <p>Check if you can inherit funds from a lost vault.</p>
+                    </div>
+                    <div class="menu-card glass interactive" id="btn-nav-guardian">
+                        <div class="icon guardian-icon"></div>
+                        <h3>I am Guardian</h3>
+                        <p>Review pending withdrawal requests from users.</p>
+                    </div>
+                    <div class="menu-card glass interactive" id="btn-nav-owner">
+                        <div class="icon vault-icon"></div>
+                        <h3>My Vault</h3>
+                        <p>Manage your vault, deposit or withdraw funds.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HEIR DASHBOARD -->
+            <section id="view-heir" class="view hidden">
+                <button class="nav-back btn sm-btn outline-btn mb-1" onclick="switchView('mainMenu')">← Back</button>
+                <div class="card glass wide">
+                    <h2>Heir <span class="accent-text">Dashboard</span></h2>
+                    <div class="input-group">
+                        <label>Vault Address</label>
+                        <input type="text" id="heir-sb-address" placeholder="0x..." value="0xA5915a6C8921AC37...">
+                        <button id="btn-check-heir" class="btn secondary-btn">Check Status</button>
+                    </div>
+
+                    <div id="heir-stats" class="status-container hidden">
+                        <div class="timer-box">
+                            <p class="label">Time until available</p>
+                            <h3 id="heir-countdown" class="countdown">00:00:00</h3>
+                            <button onclick="fastForwardTime()" class="btn sm-btn outline-btn mt-1">Dev: Fast Forward +1 Year</button>
+                        </div>
+                        <button id="btn-inherit" class="btn primary-btn mt-1" disabled>Withdraw Funds</button>
+                    </div>
+                    <p id="heir-msg" class="status-msg"></p>
+                </div>
+            </section>
+
+            <!-- GUARDIAN DASHBOARD -->
+            <section id="view-guardian" class="view hidden">
+                <button class="nav-back btn sm-btn outline-btn mb-1" onclick="switchView('mainMenu')">← Back</button>
+                <div class="card glass wide">
+                    <h2>Guardian <span class="accent-text">Panel</span></h2>
+
+                    <div class="input-group">
+                        <label>Vault Address</label>
+                        <input type="text" id="guardian-sb-address" placeholder="0x..." value="0xA5915a6C8921AC37...">
+                        <button id="btn-check-requests" class="btn secondary-btn">Fetch Requests</button>
+                    </div>
+
+                    <div id="guardian-requests" class="requests-list">
+                        <p class="placeholder-text text-center mt-2">No active requests found.</p>
+                    </div>
+                    <p id="guardian-msg" class="status-msg"></p>
+                </div>
+            </section>
+
+            <!-- CREATE FORM -->
+            <section id="view-create" class="view hidden">
+                <button class="nav-back btn sm-btn outline-btn mb-1" onclick="switchView('mainMenu')">← Back</button>
+                <div class="card glass wide scrollable">
+                    <h2>Factory: <span class="accent-text">Deploy Vault</span></h2>
+                    <form id="create-sb-form" class="form-grid">
+                        <div class="form-group full-width">
+                            <h4>Owner Details</h4>
+                            <input type="email" placeholder="Your Email (Alerts)" required>
+                        </div>
+                        <div class="form-group split-container full-width">
+                            <div class="split split-left">
+                                <h4>Guardian 1</h4>
+                                <input type="text" placeholder="0x... Address" value="0x892aF..." required>
+                                <input type="email" placeholder="admin@vaultix.com" required>
+                            </div>
+                        </div>
+                        <button type="submit" id="btn-deploy-sb" class="btn primary-btn full-width mt-1">Deploy Vault</button>
+                    </form>
+                    <p id="create-msg" class="status-msg"></p>
+                </div>
+            </section>
+
+            <!-- OWNER DASHBOARD -->
+            <section id="view-owner-sb" class="view hidden">
+                <button class="nav-back btn sm-btn outline-btn mb-1" onclick="switchView('mainMenu')">← Back</button>
+                <div class="card glass wide">
+                    <div class="sb-header flex-between mb-2">
+                        <h2>Vault <span class="accent-text">Control</span></h2>
+                        <span id="sb-address-badge" class="badge">0xA5915a...</span>
+                    </div>
+
+                    <div class="stats-row mb-2">
+                        <div class="stat-box">
+                            <label>Vault Balance</label>
+                            <h3 id="sb-balance">2.50 <span class="unit">ETH</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="action-row split-container mb-2">
+                        <div class="split split-left boxed">
+                            <h4>Deposit Funds</h4>
+                            <input type="number" id="dep-amount" placeholder="Amount in ETH" step="0.01">
+                            <button id="btn-sb-deposit" class="btn secondary-btn full-width mt-1">Deposit</button>
+                        </div>
+                        <div class="split split-right boxed">
+                            <h4>Request Withdrawal</h4>
+                            <input type="number" id="with-amount" placeholder="Amount in ETH" step="0.01">
+                            <button id="btn-sb-withdraw" class="btn primary-btn full-width mt-1">Request</button>
+                        </div>
+                    </div>
+                    <p id="owner-msg" class="status-msg text-center"></p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="demo-script.js"></script>
+</body>
+</html>
