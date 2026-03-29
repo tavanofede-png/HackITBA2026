@@ -1,12 +1,12 @@
-# StrongBox DApp
+# Vaultix DApp
 
-StrongBox es una aplicación descentralizada (DApp) diseñada para gestionar bóvedas criptográficas seguras (Crypto Vaults). Permite a los usuarios asegurar sus activos digitales y, al mismo tiempo, establecer lógicas de recuperación y herencia descentralizadas mediante la designación de "Guardianes" (Guardians) y "Herederos" (Heirs).
+Vaultix es una aplicación descentralizada (DApp) diseñada para gestionar bóvedas criptográficas seguras (Crypto Vaults). Permite a los usuarios asegurar sus activos digitales y, al mismo tiempo, establecer lógicas de recuperación y herencia descentralizadas mediante la designación de "Guardianes" (Guardians) y "Herederos" (Heirs).
 
 ## 🗂️ Estructura del Proyecto
 
 El proyecto está dividido en tres componentes principales:
 
-- **`/contracts`**: Contiene los Smart Contracts en Solidity que definen la lógica core de StrongBox, la creación de bóvedas y los roles (Owner, Guardian, Heir).
+- **`/contracts`**: Contiene los Smart Contracts en Solidity que definen la lógica core de Vaultix, la creación de bóvedas y los roles (Owner, Guardian, Heir).
 - **`/server`**: Un backend liviano en Node.js/Express. Se encarga de guardar y proveer la metadata de las bóvedas (como direcciones de billeteras y correos electrónicos) utilizando una base de datos local basada en JSON (`database.json`).
 - **`/frontend`**: Interfaz de usuario web construida con HTML, CSS, y JavaScript puro. Se conecta mediante `ethers.js` a tu billetera MetaMask para interactuar directamente con los contratos y el servidor.
 
